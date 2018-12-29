@@ -9,11 +9,14 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreen extends AppCompatActivity {
 
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        auth = FirebaseAuth.getInstance();
 
         Thread thread = new Thread() {
             @Override
@@ -24,8 +27,9 @@ public class SplashScreen extends AppCompatActivity {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     Intent intent;
 
-                    if ( user == null ) intent = new Intent(SplashScreen.this, LogIn.class);
-                    else                intent = new Intent(SplashScreen.this, MainActivity.class);
+                    if ( user == null )     intent = new Intent(SplashScreen.this, LogIn.class);
+                    else                    intent = new Intent(SplashScreen.this, MainActivity.class);
+
                         startActivity(intent);
                     finish();
                 } catch (InterruptedException e ){
