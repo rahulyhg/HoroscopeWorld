@@ -13,30 +13,18 @@ public class SplashScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme ( R.style.AppTheme );
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
 
         auth = FirebaseAuth.getInstance();
 
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    sleep(1000);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Intent intent;
 
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    Intent intent;
+        if ( user == null )     intent = new Intent(SplashScreen.this, LogIn.class);
+        else                    intent = new Intent(SplashScreen.this, MainActivity.class);
 
-                    if ( user == null )     intent = new Intent(SplashScreen.this, LogIn.class);
-                    else                    intent = new Intent(SplashScreen.this, MainActivity.class);
-
-                        startActivity(intent);
-                    finish();
-                } catch (InterruptedException e ){
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
+        startActivity(intent);
+        finish();
     }
 }

@@ -35,6 +35,7 @@ public class LogIn extends AppCompatActivity {
                 AuthUI.getInstance()
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
+                        .setTheme(R.style.AppTheme)
                         .build(),
                 RC_SIGN_IN);
     }
