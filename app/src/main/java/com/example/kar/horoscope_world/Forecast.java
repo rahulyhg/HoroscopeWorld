@@ -21,6 +21,7 @@ public class Forecast extends AppCompatActivity {
     private ViewPager viewPager;
     private MyPagerAdapter myPagerAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,8 @@ public class Forecast extends AppCompatActivity {
 }
 
 class MyPagerAdapter extends FragmentStatePagerAdapter {
+    String[] dates = {"Yesterday", "Today", "Tomorrow", "Week", "Month", "2019"};
+
 
     public MyPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -86,12 +89,12 @@ class MyPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 10;
+        return 6;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "Tab" + ( position+1 );
+        return dates[position];
     }
 }
 
