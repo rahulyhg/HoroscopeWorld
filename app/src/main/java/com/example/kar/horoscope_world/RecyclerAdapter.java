@@ -1,5 +1,6 @@
 package com.example.kar.horoscope_world;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -60,6 +61,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Image image = imageList.get ( i );
                 intent.putExtra("Title", image.name );
                 context.startActivity(intent);
+                ( (Activity) context).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
