@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,6 +32,8 @@ public class Forecast extends AppCompatActivity {
         String activity_title = intent.getStringExtra("Title");
         setTitle(activity_title);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.pager);
@@ -41,6 +44,25 @@ public class Forecast extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if ( id == android.R.id.home ) {
+            Intent intent = new Intent( this, MainActivity.class );
+            startActivity ( intent );
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            finish();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     public static class MyFragment extends Fragment {
 
