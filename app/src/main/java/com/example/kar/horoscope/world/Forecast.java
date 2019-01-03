@@ -1,8 +1,9 @@
-package com.example.kar.horoscope_world;
+package com.example.kar.horoscope.world;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -83,7 +84,7 @@ public class Forecast extends AppCompatActivity {
 
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             Bundle arguments = getArguments();
             int pageNumber = arguments.getInt(ARG_PAGE);
             TextView myText = new TextView(getActivity());
@@ -96,17 +97,16 @@ public class Forecast extends AppCompatActivity {
 }
 
 class MyPagerAdapter extends FragmentStatePagerAdapter {
-    String[] dates = {"Yesterday", "Today", "Tomorrow", "Week", "Month", "2019"};
+    private String[] dates = {"Yesterday", "Today", "Tomorrow", "Week", "Month", "2019"};
 
 
-    public MyPagerAdapter(FragmentManager fm) {
+    MyPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        Forecast.MyFragment myFragment = Forecast.MyFragment.newInstance(position);
-        return myFragment;
+        return Forecast.MyFragment.newInstance(position);
     }
 
     @Override
