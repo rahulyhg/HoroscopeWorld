@@ -1,4 +1,4 @@
-package com.example.kar.horoscope_world;
+package com.example.kar.horoscope.world;
 
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;

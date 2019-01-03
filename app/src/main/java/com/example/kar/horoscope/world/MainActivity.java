@@ -1,4 +1,4 @@
-package com.example.kar.horoscope_world;
+package com.example.kar.horoscope.world;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -62,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         TextView userEmail = view.findViewById(R.id.user_email);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.d ( "Auth", user.getEmail() );
-        Log.d ( "Auth", user.getDisplayName());
 
 
         GlideApp.with(profilePic.getContext()).load(user.getPhotoUrl()).into(profilePic);
@@ -83,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Intent intent = new Intent(MainActivity.this, LogIn.class );
                                     startActivity(intent);
+                                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
                                     finish();
                                 }
                             });

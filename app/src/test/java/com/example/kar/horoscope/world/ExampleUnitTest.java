@@ -1,4 +1,4 @@
-package com.example.kar.horoscope_world;
+package com.example.kar.horoscope.world;
 
 import org.junit.Test;
 

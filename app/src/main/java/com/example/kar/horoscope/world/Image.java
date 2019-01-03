@@ -1,4 +1,4 @@
-package com.example.kar.horoscope_world;
+package com.example.kar.horoscope.world;
 
 public class Image {
     public String download_url;

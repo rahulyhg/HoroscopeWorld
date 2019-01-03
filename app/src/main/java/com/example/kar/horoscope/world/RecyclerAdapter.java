@@ -1,5 +1,6 @@
-package com.example.kar.horoscope_world;
+package com.example.kar.horoscope.world;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -18,8 +19,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-
-    private String setTitleName;
 
     private Context context;
     private List<Image> imageList;
@@ -43,10 +42,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder,final int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-        Image image = imageList.get(i);
-        setTitleName = image.name;
+        final Image image = imageList.get(i);
 
         viewHolder.textView.setText(image.name);
         Glide.with(context)
@@ -57,9 +55,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Forecast.class );
-                Image image = imageList.get ( i );
                 intent.putExtra("Title", image.name );
                 context.startActivity(intent);
+                ( (Activity) context).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
     }
@@ -75,8 +73,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
 
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView textView;
         CircleImageView imageView;
