@@ -43,7 +43,7 @@ public class LogIn extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
                 finish();
             }

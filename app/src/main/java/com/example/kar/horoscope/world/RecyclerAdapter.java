@@ -57,7 +57,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 Intent intent = new Intent(context, Forecast.class );
                 intent.putExtra("Title", image.name );
                 context.startActivity(intent);
-                ( (Activity) context).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                ( (Activity) context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
     }

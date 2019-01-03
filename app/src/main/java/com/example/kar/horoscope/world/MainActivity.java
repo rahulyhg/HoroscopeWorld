@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Intent intent = new Intent(MainActivity.this, LogIn.class );
                                     startActivity(intent);
-                                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
                                     finish();
                                 }

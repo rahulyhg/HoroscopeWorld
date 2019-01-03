@@ -48,7 +48,7 @@ public class Forecast extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Forecast extends AppCompatActivity {
         if ( id == android.R.id.home ) {
             Intent intent = new Intent( this, MainActivity.class );
             startActivity ( intent );
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             finish();
 
             return true;
