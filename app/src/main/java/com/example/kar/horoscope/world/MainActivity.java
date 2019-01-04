@@ -86,6 +86,12 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                 }
+
+                if ( id == R.id.compatibility ) {
+                    Intent intent = new Intent( MainActivity.this, Compatibility.class );
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }
                 return true;
             }
         });

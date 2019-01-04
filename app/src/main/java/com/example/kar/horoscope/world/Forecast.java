@@ -19,10 +19,6 @@ import android.widget.TextView;
 
 public class Forecast extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private MyPagerAdapter myPagerAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +31,9 @@ public class Forecast extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
-        tabLayout = findViewById(R.id.tab_layout);
-        viewPager = findViewById(R.id.pager);
+        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        ViewPager viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(myPagerAdapter);
         tabLayout.setTabsFromPagerAdapter(myPagerAdapter);
 
