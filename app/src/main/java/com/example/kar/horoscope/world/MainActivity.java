@@ -1,6 +1,7 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -100,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference databaseReference = firebaseDatabase.getReference("Images");
 
         ArrayList<Image> imageList = new ArrayList<>();
+        final ArrayList<String> zodiac = new ArrayList<>();
 
 
         int col = 3;
@@ -117,10 +119,22 @@ public class MainActivity extends AppCompatActivity {
 
                 for( DataSnapshot snapshot : dataSnapshot.getChildren() ) {
                     Image image = snapshot.getValue(Image.class);
+                    zodiac.add ( image.name );
                     imageList.add(image);
                 }
-
                 adapter.setImageList(imageList);
+
+                ///Shared pregerence
+                StringBuilder stringBuilder = new StringBuilder();
+                for ( String s : zodiac ) {
+                    stringBuilder.append(s);
+                    stringBuilder.append(",");
+                }
+
+                SharedPreferences settings = getSharedPreferences("Prefs", 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("zodiac", stringBuilder.toString() );
+                editor.commit();
             }
 
             @Override
