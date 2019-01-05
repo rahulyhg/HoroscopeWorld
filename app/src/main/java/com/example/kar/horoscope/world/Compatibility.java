@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Compatibility extends AppCompatActivity {
 
@@ -34,8 +35,7 @@ public class Compatibility extends AppCompatActivity {
         String zodiacString = settings.getString("zodiac", "" );
         String[] itemsZodiac = zodiacString.split(",");
 
-        for ( int i = 0; i < itemsZodiac.length; i++ )
-            items.add ( itemsZodiac[i]);
+        items.addAll(Arrays.asList(itemsZodiac));
 
         for ( int i= 0; i < items.size(); i++ )
             Log.d ( "listItem = ", items.get(i));
