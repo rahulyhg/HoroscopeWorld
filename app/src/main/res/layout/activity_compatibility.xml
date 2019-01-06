@@ -7,12 +7,13 @@
     android:orientation="vertical"
     android:layout_gravity="center_vertical"
     android:gravity="center_horizontal"
+    android:id="@+id/compatibility"
     tools:context="com.example.kar.horoscope.world.Compatibility">
 
     <RelativeLayout
         android:id="@+id/avatar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="190dp"
         android:paddingTop="80dp">
 
         <LinearLayout
