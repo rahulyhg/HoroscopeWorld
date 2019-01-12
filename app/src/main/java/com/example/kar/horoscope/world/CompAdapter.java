@@ -40,7 +40,6 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final CompAdapter.ViewHolder viewHolder, int i) {
 
-
         final String s = nameList.get(i);
         viewHolder.textView.setText(s);
 

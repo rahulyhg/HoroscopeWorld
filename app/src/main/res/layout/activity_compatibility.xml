@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/gender_male"
-                android:layout_width="77dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Male"
@@ -56,7 +56,7 @@
 
             <TextView
                 android:id="@+id/gender_female"
-                android:layout_width="77dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Female"
@@ -70,5 +70,22 @@
         android:id="@+id/recyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:overScrollMode="never"/>
+
+    <Button
+        android:id="@+id/goCompatibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Compatibility"
+        android:textStyle="italic"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button"/>
+
 </LinearLayout>

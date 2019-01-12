@@ -25,10 +25,14 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
         setTitle("Compatibility");
 
+
         final ImageView male = findViewById(R.id.male);
         final ImageView female = findViewById(R.id.female );
         male.setClickable(true);
         female.setClickable(true);
+
+        changeSize( male, 88 );
+        setCurrentTag("male");
 
         male.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +68,7 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
         SharedPreferences settings = getSharedPreferences( "Prefs", 0 );
         String zodiacString = settings.getString("zodiac", "" );
+        assert zodiacString != null;
         String[] itemsZodiac = zodiacString.split(",");
 
         items.addAll(Arrays.asList(itemsZodiac));
