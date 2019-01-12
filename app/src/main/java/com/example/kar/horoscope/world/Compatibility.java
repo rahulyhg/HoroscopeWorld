@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +26,7 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
         setTitle("Compatibility");
 
-
+        Button showButton = findViewById( R.id.goCompatibility );
         final ImageView male = findViewById(R.id.male);
         final ImageView female = findViewById(R.id.female );
         male.setClickable(true);
