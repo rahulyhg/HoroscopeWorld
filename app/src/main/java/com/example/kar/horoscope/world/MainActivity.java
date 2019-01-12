@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 SharedPreferences settings = getSharedPreferences("Prefs", 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("zodiac", stringBuilder.toString() );
-                editor.commit();
+                editor.apply();
             }
 
             @Override

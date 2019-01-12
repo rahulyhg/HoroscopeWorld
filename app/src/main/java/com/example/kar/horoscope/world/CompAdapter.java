@@ -1,6 +1,7 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -17,9 +17,13 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
     private Context context;
     private List<String> nameList;
     private LayoutInflater inflater;
+    private SharedPreferences.Editor editor;
+    private ClickItem clickItem;
 
 
-    CompAdapter ( Context context, List<String> nameList ) {
+
+    CompAdapter ( Context context, List<String> nameList, ClickItem clickItem ) {
+        this.clickItem = clickItem;
         this.inflater = LayoutInflater.from(context);
         this.context = context;
         this.nameList = nameList;
@@ -28,22 +32,22 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
     @NonNull
     @Override
     public CompAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
         View view = inflater.inflate(R.layout.name, viewGroup, false);
         return new CompAdapter.ViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull final CompAdapter.ViewHolder viewHolder, int i) {
+
 
         final String s = nameList.get(i);
         viewHolder.textView.setText(s);
 
-        ///TODO
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Set picture", Toast.LENGTH_LONG).show();
+                clickItem.ItemClicked( s );
             }
         });
     }
