@@ -1,5 +1,6 @@
 package com.example.kar.horoscope.world;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +28,6 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
         setTitle("Compatibility");
 
-        Button showButton = findViewById( R.id.goCompatibility );
         final ImageView male = findViewById(R.id.male);
         final ImageView female = findViewById(R.id.female );
         male.setClickable(true);
@@ -75,6 +76,28 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
         items.addAll(Arrays.asList(itemsZodiac));
         adapter.setNameList( items );
 
+
+        Button showButton = findViewById( R.id.goCompatibility );
+        showButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView male_check = findViewById(R.id.gender_male);
+                TextView female_check = findViewById(R.id.gender_female);
+
+                if ( male_check.getText().toString().equals("Male") || female_check.getText().toString().equals("Female")) {
+                    Toast.makeText(Compatibility.this, "Select Zodiac", Toast.LENGTH_LONG).show();
+                }
+
+                else {
+                    Intent intent = new Intent(Compatibility.this, ShowCompatibility.class );
+                    intent.putExtra("MaleName", male_check.getText().toString());
+                    intent.putExtra("FemaleName", female_check.getText().toString());
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }
+            }
+        });
+
     }
 
     public void setCurrentTag(String tag) {
@@ -111,5 +134,12 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
             nameOfZodiac.setTextColor(Color.GRAY);
             nameOfZodiac.setTextSize(18);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }
