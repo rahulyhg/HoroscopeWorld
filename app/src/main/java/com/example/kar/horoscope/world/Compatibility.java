@@ -1,9 +1,9 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Compatibility extends AppCompatActivity implements ClickItem {
 
@@ -61,20 +66,36 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
         int col = 2;
         int space = 180;
 
+        final ArrayList<Image> imageList = new ArrayList<>();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.addItemDecoration(new SpacesItemDecoration(  space ));
         recyclerView.setLayoutManager(new GridLayoutManager(this, col ));
-        CompAdapter adapter = new CompAdapter(this, items, this);
+        final CompAdapter adapter = new CompAdapter(this, imageList, this);
         recyclerView.setAdapter(adapter);
 
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference("Images");
 
-        SharedPreferences settings = getSharedPreferences( "Prefs", 0 );
-        String zodiacString = settings.getString("zodiac", "" );
-        assert zodiacString != null;
-        String[] itemsZodiac = zodiacString.split(",");
 
-        items.addAll(Arrays.asList(itemsZodiac));
-        adapter.setNameList( items );
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for( DataSnapshot snapshot : dataSnapshot.getChildren() ) {
+                    Image image = snapshot.getValue(Image.class);
+                    imageList.add ( image );
+                }
+
+                adapter.setNameList(imageList);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(Compatibility.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
         Button showButton = findViewById( R.id.goCompatibility );
@@ -118,7 +139,7 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
     }
 
     @Override
-    public void ItemClicked(String s) {
+    public void ItemClicked(String s, String downloadURL) {
 
         if ("male".equals(currentTag)) {
 
@@ -126,6 +147,9 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
             nameOfZodiac.setText(s);
             nameOfZodiac.setTextColor(Color.GRAY);
             nameOfZodiac.setTextSize(18);
+
+            ImageView imageView = findViewById(R.id.male );
+            GlideApp.with(getApplicationContext()).load(downloadURL).into(imageView);
         }
 
         else if ("female".equals(currentTag)) {
@@ -133,6 +157,10 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
             nameOfZodiac.setText(s);
             nameOfZodiac.setTextColor(Color.GRAY);
             nameOfZodiac.setTextSize(18);
+
+            ImageView imageView = findViewById(R.id.female );
+            GlideApp.with(getApplicationContext()).load(downloadURL).into(imageView);
+
         }
     }
 
