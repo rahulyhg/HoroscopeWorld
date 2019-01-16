@@ -36,6 +36,7 @@ public class Forecast extends AppCompatActivity {
         ViewPager viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(myPagerAdapter);
         tabLayout.setTabsFromPagerAdapter(myPagerAdapter);
+        viewPager.setCurrentItem(1, true);
 
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

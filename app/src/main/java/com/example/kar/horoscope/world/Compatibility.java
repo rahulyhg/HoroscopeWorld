@@ -150,7 +150,6 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
             ImageView imageView = findViewById(R.id.male );
             GlideApp.with(getApplicationContext()).load(downloadURL).into(imageView);
-            changeSize(imageView, 77);
         }
 
         else if ("female".equals(currentTag)) {
@@ -161,7 +160,6 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
             ImageView imageView = findViewById(R.id.female );
             GlideApp.with(getApplicationContext()).load(downloadURL).into(imageView);
-            changeSize(imageView, 77);
 
         }
     }

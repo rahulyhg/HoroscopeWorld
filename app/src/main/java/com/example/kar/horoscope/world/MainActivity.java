@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
+
         assert user != null;
         GlideApp.with(profilePic.getContext()).load(user.getPhotoUrl()).into(profilePic);
         userName.setText(user.getDisplayName());
@@ -101,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("Images");
+        databaseReference.keepSynced(true);
+
 
         ArrayList<Image> imageList = new ArrayList<>();
 
@@ -112,9 +116,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
+        /// fix start time
+        final long startTime = System.nanoTime();
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                /// print time spent to get the list
+                Log.d("asdf", "duration is ------->" + (System.nanoTime() - startTime));
 
                 ArrayList<Image> imageList = new ArrayList<>();
 
@@ -123,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
                     imageList.add(image);
                 }
                 adapter.setImageList(imageList);
+                /// print time after setting image list
+               Log.d("ldjfsklj","duration is ------->" + (System.nanoTime() - startTime) );
             }
 
             @Override
@@ -130,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
