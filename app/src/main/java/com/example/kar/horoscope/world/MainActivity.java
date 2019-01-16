@@ -1,8 +1,10 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,32 +29,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
-    private NavigationView navigationView;
 
     RecyclerView recyclerView;
     private RecyclerAdapter adapter;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-        drawerLayout = findViewById(R.id.drawer);
+        DrawerLayout drawerLayout = findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle( this, drawerLayout, R.string.open, R.string.close );
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
         ///****Set Header Parameters
-        navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);
 
 
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
+        assert user != null;
         GlideApp.with(profilePic.getContext()).load(user.getPhotoUrl()).into(profilePic);
         userName.setText(user.getDisplayName());
         userEmail.setText(user.getEmail());
@@ -120,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     imageList.add(image);
                 }
                 adapter.setImageList(imageList);
-
             }
 
             @Override
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     @Override

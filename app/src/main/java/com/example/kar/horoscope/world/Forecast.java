@@ -82,6 +82,7 @@ public class Forecast extends AppCompatActivity {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             Bundle arguments = getArguments();
+            assert arguments != null;
             int pageNumber = arguments.getInt(ARG_PAGE);
             TextView myText = new TextView(getActivity());
             myText.setText("Hello I am the text inside this Fragment " + pageNumber);
