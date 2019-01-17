@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
-        ///****Set Header Parameters
+        ///Set Header Parameters
         NavigationView navigationView = findViewById(R.id.nav_view);
         View view = navigationView.getHeaderView(0);
 
@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         TextView userEmail = view.findViewById(R.id.user_email);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
 
         assert user != null;
         GlideApp.with(profilePic.getContext()).load(user.getPhotoUrl()).into(profilePic);
