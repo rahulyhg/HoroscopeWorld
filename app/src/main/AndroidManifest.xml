@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".SetUserZodiac"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +33,7 @@
         <activity
             android:name=".Compatibility"
             android:screenOrientation="portrait" />
-        <activity android:name=".ShowCompatibility"></activity>
+        <activity android:name=".ShowCompatibility" />
     </application>
 
 </manifest>

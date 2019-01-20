@@ -1,6 +1,7 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -104,6 +105,8 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
             public void onClick(View view) {
                 TextView male_check = findViewById(R.id.gender_male);
                 TextView female_check = findViewById(R.id.gender_female);
+                ImageView maleImage = findViewById(R.id.male );
+                ImageView femaleImage = findViewById(R.id.female);
 
                 if ( male_check.getText().toString().equals("Male") || female_check.getText().toString().equals("Female")) {
                     Toast.makeText(Compatibility.this, "Select Zodiac", Toast.LENGTH_LONG).show();
@@ -113,6 +116,16 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
                     Intent intent = new Intent(Compatibility.this, ShowCompatibility.class );
                     intent.putExtra("MaleName", male_check.getText().toString());
                     intent.putExtra("FemaleName", female_check.getText().toString());
+
+                    maleImage.setDrawingCacheEnabled(true);
+                    femaleImage.setDrawingCacheEnabled(true);
+
+                    Bitmap bitmap1 = maleImage.getDrawingCache();
+                    Bitmap bitmap2 = femaleImage.getDrawingCache();
+
+                    intent.putExtra("Bitmap1", bitmap1 );
+                    intent.putExtra("Bitmap2", bitmap2);
+
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }

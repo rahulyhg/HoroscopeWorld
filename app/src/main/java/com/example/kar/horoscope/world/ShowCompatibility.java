@@ -1,12 +1,16 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.ImageView;
+
 
 public class ShowCompatibility extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,15 @@ public class ShowCompatibility extends AppCompatActivity {
 
         TextView maleText = findViewById(R.id.male_zodiac);
         TextView femaleText = findViewById(R.id.female_zodiac);
+
+        ImageView imageMale = findViewById(R.id.male_image);
+        ImageView imageFemale = findViewById(R.id.female_image);
+
+        Bitmap bitmapMale = ( Bitmap ) intent.getParcelableExtra ( "Bitmap1" );
+        Bitmap bitmapFemale = ( Bitmap ) intent.getParcelableExtra ( "Bitmap2" );
+
+        imageMale.setImageBitmap(bitmapMale);
+        imageFemale.setImageBitmap(bitmapFemale);
 
         setText ( maleText, male );
         setText ( femaleText, female );
