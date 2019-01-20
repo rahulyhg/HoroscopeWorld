@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context="com.example.kar.horoscope.world.SetUserZodiac">
+
 
     <TextView
         android:id="@+id/textDate"
@@ -13,5 +15,32 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/white"
         android:text="ldskjflksdj"/>
+
+    <Button
+        android:id="@+id/dateButton"
+        android:layout_below="@+id/textDate"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:layout_centerHorizontal="true"
+        android:text="Set Date"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button"/>
+
+    <Button
+        android:id="@+id/nameButton"
+        android:layout_below="@+id/dateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:padding="7dp"
+        android:text="Set Name"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button"/>
+
+
+
 
 </RelativeLayout>

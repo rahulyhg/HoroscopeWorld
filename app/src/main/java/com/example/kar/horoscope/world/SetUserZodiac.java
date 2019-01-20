@@ -3,6 +3,8 @@ package com.example.kar.horoscope.world;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
@@ -16,19 +18,24 @@ public class SetUserZodiac extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_user_zodiac);
-
+        Button dateButton = findViewById(R.id.dateButton);
         textView = findViewById(R.id.textDate );
 
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get ( Calendar.YEAR );
-        int month = calendar.get( Calendar.MONTH );
-        int day = calendar.get ( Calendar.DAY_OF_MONTH );
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get ( Calendar.YEAR );
+                int month = calendar.get( Calendar.MONTH );
+                int day = calendar.get ( Calendar.DAY_OF_MONTH );
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(SetUserZodiac.this,
-               android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,
-               dateSetListener,
-               year, month, day);
-        datePickerDialog.show();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(SetUserZodiac.this,
+                        android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,
+                        dateSetListener,
+                        year, month, day);
+                datePickerDialog.show();
+            }
+        });
 
     }
 

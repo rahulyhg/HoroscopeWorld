@@ -134,6 +134,7 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
     }
 
+
     public void setCurrentTag(String tag) {
         this.currentTag = tag;
     }
