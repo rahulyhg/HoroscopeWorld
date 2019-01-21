@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,13 +18,12 @@ public class SplashScreen extends AppCompatActivity {
         setTheme ( R.style.AppTheme );
         super.onCreate(savedInstanceState);
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        long startTime = System.nanoTime();
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
         String s = preferences.getString("Name", null);
-
 
         Intent intent;
 
@@ -37,7 +37,10 @@ public class SplashScreen extends AppCompatActivity {
 
 
         startActivity(intent);
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+        long endTime   = System.nanoTime();
+        long totalTime = endTime - startTime;
+        Log.d ( "time is -------->" , "" + totalTime  );
 
         finish();
 

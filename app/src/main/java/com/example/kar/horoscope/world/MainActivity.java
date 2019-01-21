@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         userEmail.setText(user.getEmail());
 
 
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

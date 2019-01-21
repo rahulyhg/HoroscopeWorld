@@ -69,7 +69,6 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
                 R.drawable.logo_pisces};
 
 
-
         int col = 2;
         int space = 180;
 
