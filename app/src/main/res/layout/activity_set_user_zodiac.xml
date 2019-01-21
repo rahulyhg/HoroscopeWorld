@@ -28,19 +28,14 @@
         android:textColor="@color/white"
         android:background="@drawable/rounded_button"/>
 
-    <Button
-        android:id="@+id/nameButton"
-        android:layout_below="@+id/dateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+
+    <NumberPicker
+        android:id="@+id/numberPicker"
         android:layout_centerHorizontal="true"
-        android:padding="7dp"
-        android:text="Set Name"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_button"/>
-
-
-
+        android:layout_centerVertical="true"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.Picker"/>
 
 </RelativeLayout>
