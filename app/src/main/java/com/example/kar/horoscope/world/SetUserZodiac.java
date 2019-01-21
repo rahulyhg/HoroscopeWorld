@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.lang.reflect.Field;
 
@@ -56,7 +55,7 @@ public class SetUserZodiac extends AppCompatActivity{
     public boolean onOptionsItemSelected (MenuItem menuItem ) {
         if ( menuItem.getItemId() == R.id.set ) {
             if ( selectedName == null )     selectedName = "Aries";
-            Toast.makeText(SetUserZodiac.this, "Text is " + selectedName, Toast.LENGTH_LONG).show();
+
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this );
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("Name", selectedName );
