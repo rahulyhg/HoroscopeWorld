@@ -17,20 +17,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -117,34 +112,27 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.keepSynced(true);
 
 
-        ArrayList<Image> imageList = new ArrayList<>();
+        String Names[] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces" };
+        int Images[] = {
+                R.drawable.logo_aries,
+                R.drawable.logo_taurus,
+                R.drawable.logo_gemini,
+                R.drawable.logo_cancer,
+                R.drawable.logo_leo,
+                R.drawable.logo_virgo,
+                R.drawable.logo_libra,
+                R.drawable.logo_scorpio,
+                R.drawable.logo_sagittarius,
+                R.drawable.logo_capricorn,
+                R.drawable.logo_aquarius,
+                R.drawable.logo_pisces};
 
 
         int col = 3;
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, col ));
-        adapter = new RecyclerAdapter(this, imageList );
+        adapter = new RecyclerAdapter(this, Names, Images );
         recyclerView.setAdapter(adapter);
-
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                ArrayList<Image> imageList = new ArrayList<>();
-
-                for( DataSnapshot snapshot : dataSnapshot.getChildren() ) {
-                    Image image = snapshot.getValue(Image.class);
-                    imageList.add(image);
-                }
-                adapter.setImageList(imageList);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override

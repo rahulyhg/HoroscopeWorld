@@ -13,22 +13,22 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private Context context;
-    private List<Image> imageList;
+    private String[] Names;
+    private int[] Images;
     private LayoutInflater inflater;
 
 
-    RecyclerAdapter(Context context, List<Image> imageList) {
+    RecyclerAdapter(Context context, String[] Names, int[] Images) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
-        this.imageList = imageList;
+        this.Images = Images;
+        this.Names = Names;
     }
 
 
@@ -44,18 +44,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-        final Image image = imageList.get(i);
-
-        viewHolder.textView.setText(image.name);
+        final String name = Names[i];
+        viewHolder.textView.setText(Names[i]);
         Glide.with(context)
-                .load(image.download_url)
+                .load(Images[i])
                 .into(viewHolder.imageView);
 
         viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Forecast.class );
-                intent.putExtra("Title", image.name );
+                intent.putExtra("Title", name );
                 context.startActivity(intent);
                 ( (Activity) context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -64,14 +63,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return imageList.size();
+        return Images.length;
     }
 
-
-    void setImageList(List<Image> imageList) {
-        this.imageList = imageList;
-        notifyDataSetChanged();
-    }
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
