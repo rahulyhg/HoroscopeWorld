@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class ShowCompatibility extends AppCompatActivity {
@@ -36,6 +36,7 @@ public class ShowCompatibility extends AppCompatActivity {
 
         setText ( maleText, male );
         setText ( femaleText, female );
+
 
     }
 

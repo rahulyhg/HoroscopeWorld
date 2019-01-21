@@ -1,47 +1,31 @@
 package com.example.kar.horoscope.world;
 
-import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Field;
-import java.util.Calendar;
 
 public class SetUserZodiac extends AppCompatActivity{
 
     private TextView textView;
     private NumberPicker.OnValueChangeListener valueChangeListener;
+    private String selectedName;
+    private boolean mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_user_zodiac);
-        Button dateButton = findViewById(R.id.dateButton);
-        textView = findViewById(R.id.textDate );
-
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get ( Calendar.YEAR );
-                int month = calendar.get( Calendar.MONTH );
-                int day = calendar.get ( Calendar.DAY_OF_MONTH );
-
-                DatePickerDialog datePickerDialog = new DatePickerDialog(SetUserZodiac.this,
-                        android.R.style.Theme_Holo_Light_Dialog_NoActionBar_MinWidth,
-                        dateSetListener,
-                        year, month, day);
-                datePickerDialog.show();
-            }
-        });
 
 
         final String[] names = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
@@ -54,25 +38,41 @@ public class SetUserZodiac extends AppCompatActivity{
         namepicker.setWrapSelectorWheel(false);
         changeDividerColor(namepicker, Color.TRANSPARENT);
 
-        namepicker.setOnClickListener(new View.OnClickListener() {
+        namepicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(SetUserZodiac.this, "skldjflkasjfk;lasjdf", Toast.LENGTH_LONG).show();
-                int pickedValue = namepicker.getValue();
-                Toast.makeText(SetUserZodiac.this, "It is " + names[pickedValue], Toast.LENGTH_LONG).show();
-
+            public void onValueChange(NumberPicker numberPicker, int oldValue, int newValue) {
+                selectedName = names[namepicker.getValue()];
             }
         });
     }
 
-    DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-            month = month + 1;
-            String date = day + "/" + month + "/" + year;
-            updateDate( date );
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu) {
+        getMenuInflater().inflate(R.menu.set, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem menuItem ) {
+        if ( menuItem.getItemId() == R.id.set ) {
+            if ( selectedName == null )     selectedName = "Aries";
+            Toast.makeText(SetUserZodiac.this, "Text is " + selectedName, Toast.LENGTH_LONG).show();
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this );
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("Name", selectedName );
+            editor.apply();
+
+            Intent intent = new Intent( SetUserZodiac.this, Forecast.class );
+            intent.putExtra("Title", selectedName );
+            startActivity(intent);
+
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            finish();
+
+            return true;
         }
-    };
+        return super.onOptionsItemSelected(menuItem);
+    }
 
     private void changeDividerColor(NumberPicker picker, int color) {
         try {
@@ -85,7 +85,4 @@ public class SetUserZodiac extends AppCompatActivity{
         }
     }
 
-    public void updateDate(String date) {
-        textView.setText(date);
-    }
 }

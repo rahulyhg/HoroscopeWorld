@@ -1,7 +1,9 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,17 +19,25 @@ public class SplashScreen extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        String s = preferences.getString("Name", null);
+
+
         Intent intent;
 
-        if ( user == null )     intent = new Intent(SplashScreen.this, LogIn.class);
-        else                    intent = new Intent(SplashScreen.this, MainActivity.class);
+        if ( s != null ) {
+           intent = new Intent( SplashScreen.this, Forecast.class);
+           intent.putExtra("Title", s );
+        }
+
+        else if ( user == null )     intent = new Intent(SplashScreen.this, LogIn.class);
+        else                         intent = new Intent(SplashScreen.this, MainActivity.class);
 
 
         startActivity(intent);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-
-
 
         finish();
 
