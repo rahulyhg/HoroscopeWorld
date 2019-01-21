@@ -1,8 +1,10 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
@@ -80,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+
+                                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this );
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putString("Name", null );
+                                    editor.apply();
+
                                     Intent intent = new Intent(MainActivity.this, LogIn.class );
                                     startActivity(intent);
                                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
