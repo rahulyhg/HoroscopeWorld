@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,14 +12,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class Compatibility extends AppCompatActivity implements ClickItem {
 
@@ -62,41 +53,31 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
             }
         });
 
-        ArrayList <String> items = new ArrayList<>();
+        String Names[] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces" };
+        int Images[] = {
+                R.drawable.logo_aries,
+                R.drawable.logo_taurus,
+                R.drawable.logo_gemini,
+                R.drawable.logo_cancer,
+                R.drawable.logo_leo,
+                R.drawable.logo_virgo,
+                R.drawable.logo_libra,
+                R.drawable.logo_scorpio,
+                R.drawable.logo_sagittarius,
+                R.drawable.logo_capricorn,
+                R.drawable.logo_aquarius,
+                R.drawable.logo_pisces};
+
+
 
         int col = 2;
         int space = 180;
 
-        final ArrayList<Image> imageList = new ArrayList<>();
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.addItemDecoration(new SpacesItemDecoration(  space ));
         recyclerView.setLayoutManager(new GridLayoutManager(this, col ));
-        final CompAdapter adapter = new CompAdapter(this, imageList, this);
+        final CompAdapter adapter = new CompAdapter(this, Names, Images, this);
         recyclerView.setAdapter(adapter);
-
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("Images");
-
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for( DataSnapshot snapshot : dataSnapshot.getChildren() ) {
-                    Image image = snapshot.getValue(Image.class);
-                    imageList.add ( image );
-                }
-
-                adapter.setNameList(imageList);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(Compatibility.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
 
         Button showButton = findViewById( R.id.goCompatibility );
@@ -153,7 +134,7 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
     }
 
     @Override
-    public void ItemClicked(String s, String downloadURL) {
+    public void ItemClicked(String s, int downloadURL) {
 
         if ("male".equals(currentTag)) {
 

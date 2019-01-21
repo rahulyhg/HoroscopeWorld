@@ -10,23 +10,23 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.List;
-
 public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
 
     private Context context;
-    private List<Image> nameList;
+    private String[] Names;
+    private int[] Images;
     private LayoutInflater inflater;
     private SharedPreferences.Editor editor;
     private ClickItem clickItem;
 
 
 
-    CompAdapter ( Context context, List<Image> nameList, ClickItem clickItem ) {
+    CompAdapter ( Context context,String[] Names, int[] Images, ClickItem clickItem ) {
         this.clickItem = clickItem;
         this.inflater = LayoutInflater.from(context);
         this.context = context;
-        this.nameList = nameList;
+        this.Names = Names;
+        this.Images = Images;
     }
 
     @NonNull
@@ -40,10 +40,9 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final CompAdapter.ViewHolder viewHolder, int i) {
 
-        Image image = nameList.get ( i );
 
-        final String s = image.name;
-        final String URL = image.download_url;
+        final String s = Names[i];
+        final int URL = Images[i];
         viewHolder.textView.setText(s);
 
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
@@ -56,14 +55,9 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return nameList.size();
+        return Images.length;
     }
 
-
-    void setNameList(List<Image> nameList) {
-        this.nameList = nameList;
-        notifyDataSetChanged();
-    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
