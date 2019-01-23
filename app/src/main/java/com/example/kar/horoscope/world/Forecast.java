@@ -40,6 +40,7 @@ public class Forecast extends AppCompatActivity {
 
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
     }
 
     @Override
@@ -95,7 +96,7 @@ public class Forecast extends AppCompatActivity {
 }
 
 class MyPagerAdapter extends FragmentStatePagerAdapter {
-    private String[] dates = {"Yesterday", "Today", "Tomorrow", "Week", "Month", "2019"};
+    private String[] dates = {"Yesterday", "Today", "Tomorrow", "Week", "Month"};
 
 
     MyPagerAdapter(FragmentManager fm) {
@@ -109,7 +110,7 @@ class MyPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 6;
+        return 5;
     }
 
     @Override
