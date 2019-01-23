@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.kar.horoscope.world">
 
-
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -14,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
 
         <activity android:name=".SplashScreen">
             <intent-filter>
