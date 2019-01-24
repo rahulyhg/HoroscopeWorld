@@ -15,6 +15,10 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="AppTheme.SplashScreen" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@drawable/layer_drawable</item>
+    </style>
+
 
 
 </resources>
