@@ -29,7 +29,12 @@ public class LogIn extends AppCompatActivity {
                         .createSignInIntentBuilder()
                         .setAvailableProviders(providers)
                         .setTheme(R.style.AppTheme)
-                        .build(),
+                        .setAlwaysShowSignInMethodScreen(true)
+                        .setIsSmartLockEnabled(false)
+                        .build()
+                        .setAction(Intent.ACTION_MAIN)
+                        .addCategory(Intent.CATEGORY_HOME)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP),
                 RC_SIGN_IN);
     }
 
@@ -47,7 +52,7 @@ public class LogIn extends AppCompatActivity {
                 finish();
             }
             else {
-                Toast.makeText(this, "Failed to login", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Failed to LogIn", Toast.LENGTH_LONG).show();
             }
         }
     }
