@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,8 +15,6 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        long startTime = System.nanoTime();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -36,14 +33,6 @@ public class SplashScreen extends AppCompatActivity {
 
 
         startActivity(intent);
-
-        long endTime   = System.nanoTime();
-        long totalTime = endTime - startTime;
-        Log.d ( "time is -------->" , "" + totalTime  );
-
         finish();
-
     }
-
-
 }
