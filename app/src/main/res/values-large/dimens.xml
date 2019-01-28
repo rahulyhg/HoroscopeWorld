@@ -2,9 +2,9 @@
 <resources>
 
     ///RecyclerView(Main activity) list
-    <dimen name="recycler_image_height">99dp</dimen>
-    <dimen name="recycler_image_width">99dp</dimen>
+    <dimen name="recycler_image_height">110dp</dimen>
+    <dimen name="recycler_image_width">110dp</dimen>
     <dimen name="recycler_text_width">100dp</dimen>
-    <dimen name="padding">18dp</dimen>
+    <dimen name="padding">20dp</dimen>
 
 </resources>

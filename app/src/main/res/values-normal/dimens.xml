@@ -4,4 +4,6 @@
     <dimen name="recycler_image_height">88dp</dimen>
     <dimen name="recycler_image_width">88dp</dimen>
     <dimen name="recycler_text_width">100dp</dimen>
-    <dimen name="padding">18dp</dimen></resources>
+    <dimen name="padding">18dp</dimen>
+
+</resources>
