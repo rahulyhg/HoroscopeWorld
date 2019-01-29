@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".WriteDeveloper"></activity>
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppTheme.SplashScreen">
