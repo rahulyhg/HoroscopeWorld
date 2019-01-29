@@ -4,13 +4,14 @@
     <string name="SetDefault">Установить по умолчанию</string>
     <string name="Language">Язык</string>
     <string name="LogOut">Выйти</string>
+    <string name="WriteToDeveloper">Написать Разработчику</string>
     <string name="SendFeedback">Отправить Отзыв</string>
     <string name="Help">Помощ</string>
     <string name="Aries">Овен</string>
     <string name="Taurus">Телец</string>
     <string name="Gemini">Близнецы</string>
-    <string name="Cancer">рак</string>
-    <string name="Leo">Лео</string>
+    <string name="Cancer">Рак</string>
+    <string name="Leo">Лев</string>
     <string name="Virgo">Дева</string>
     <string name="Libra">Весы</string>
     <string name="Scorpio">Скорпион</string>
@@ -18,4 +19,10 @@
     <string name="Capricorn">Козерог</string>
     <string name="Aquarius">Водолей</string>
     <string name="Pisces">Рыбы</string>
+    <string name="ShowCompatibility">Показать Совместимость</string>
+    <string name="Today">Сегодня</string>
+    <string name="Yesterday">Вчера</string>
+    <string name="Tomorrow">Завтра</string>
+    <string name="Month">Месяц</string>
+    <string name="Week">Неделя</string>
 </resources>

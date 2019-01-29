@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     ///RecyclerView(Main activity) list
-    <dimen name="recycler_image_height">88dp</dimen>
-    <dimen name="recycler_image_width">88dp</dimen>
+    <dimen name="recycler_image_height">100dp</dimen>
+    <dimen name="recycler_image_width">100dp</dimen>
     <dimen name="recycler_text_width">100dp</dimen>
-    <dimen name="padding">18dp</dimen>
+    <dimen name="padding">16dp</dimen>
 
 </resources>

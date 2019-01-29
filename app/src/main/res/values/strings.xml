@@ -10,6 +10,7 @@
     <string name="SetDefault">Set Default</string>
     <string name="Language">Language</string>
     <string name="LogOut">Logout</string>
+    <string name="WriteToDeveloper">Write to Developer</string>
     <string name="SendFeedback">Send Feedback</string>
     <string name="Help">Help</string>
     <string name="Aries">Aries</string>
@@ -24,11 +25,11 @@
     <string name="Capricorn">Capricorn</string>
     <string name="Aquarius">Aquarius</string>
     <string name="Pisces">Pisces</string>
-
-    <string-array name="language_option">
-        <item>English</item>
-        <item>Russian</item>
-    </string-array>
-
+    <string name="ShowCompatibility">Show Compatibility</string>
+    <string name="Today">Today</string>
+    <string name="Yesterday">Yesterday</string>
+    <string name="Tomorrow">Tomorrow</string>
+    <string name="Month">Month</string>
+    <string name="Week">Week</string>
 
 </resources>

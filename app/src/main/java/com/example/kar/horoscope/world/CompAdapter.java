@@ -12,14 +12,14 @@ import android.widget.TextView;
 public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
 
     private Context context;
-    private String[] Names;
+    private int[] Names;
     private int[] Images;
     private LayoutInflater inflater;
     private ClickItem clickItem;
 
 
 
-    CompAdapter ( Context context,String[] Names, int[] Images, ClickItem clickItem ) {
+    CompAdapter ( Context context,int[] Names, int[] Images, ClickItem clickItem ) {
         this.clickItem = clickItem;
         this.inflater = LayoutInflater.from(context);
         this.context = context;
@@ -39,7 +39,7 @@ public class CompAdapter extends RecyclerView.Adapter<CompAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull final CompAdapter.ViewHolder viewHolder, int i) {
 
 
-        final String s = Names[i];
+        final int s = Names[i];
         final int URL = Images[i];
         viewHolder.textView.setText(s);
 

@@ -113,11 +113,20 @@ public class MainActivity extends AppCompatActivity {
 
                 if ( id == R.id.feedback ) { SendFeedback(); }
 
+                if ( id == R.id.language ) {
+                    Intent intent = new Intent(MainActivity.this, SetLanguage.class );
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }
+
                 return true;
             }
         });
 
-        String Names[] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces" };
+        int Names[] = {R.string.Aries, R.string.Taurus, R.string.Gemini, R.string.Cancer, R.string.Leo,
+                R.string.Virgo, R.string.Libra, R.string.Scorpio, R.string.Sagittarius, R.string.Capricorn,
+                R.string.Aquarius, R.string.Pisces };
+
         int Images[] = {
                 R.drawable.logo_aries,
                 R.drawable.logo_taurus,

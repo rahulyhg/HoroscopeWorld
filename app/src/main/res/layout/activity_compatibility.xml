@@ -77,7 +77,7 @@
         android:id="@+id/goCompatibility"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Compatibility"
+        android:text="@string/ShowCompatibility"
         android:textStyle="italic"
         android:textSize="18dp"
         android:textAlignment="center"
