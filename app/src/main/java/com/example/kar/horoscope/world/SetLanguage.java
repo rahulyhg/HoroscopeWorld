@@ -1,9 +1,11 @@
 package com.example.kar.horoscope.world;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -21,6 +23,8 @@ public class SetLanguage extends AppCompatActivity {
     Spinner spinner;
     Locale locale;
     String currentLanguage = "en", currentLang;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +66,11 @@ public class SetLanguage extends AppCompatActivity {
 
     }
 
-    public void setLocale(String localeName) {
+    private void setLocale(String localeName) {
         if (!localeName.equals(currentLanguage)) {
             locale = new Locale(localeName);
             Resources res = getResources();
+            SaveLanguage( localeName );
             DisplayMetrics dm = res.getDisplayMetrics();
             Configuration conf = res.getConfiguration();
             conf.locale = locale;
@@ -73,7 +78,17 @@ public class SetLanguage extends AppCompatActivity {
             Intent refresh = new Intent(this, MainActivity.class);
             refresh.putExtra(currentLang, localeName);
             startActivity(refresh);
+            finish();
         } else {
             Toast.makeText(SetLanguage.this, "Language already selected!", Toast.LENGTH_SHORT).show();
         }
-    }}
+    }
+
+    private void SaveLanguage( String lang ) {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this );
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("language", lang );
+        editor.apply();
+    }
+
+}
