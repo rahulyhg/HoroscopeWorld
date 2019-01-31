@@ -21,13 +21,13 @@ public class SplashScreen extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String s = preferences.getString("Name", null);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        int s = preferences.getInt("Name", -1 );
 
         Intent intent;
 
 
-        if ( s != null ) {
+        if ( s != -1 ) {
            intent = new Intent( SplashScreen.this, Forecast.class);
            intent.putExtra("Title", s );
         }

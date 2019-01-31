@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 public class SetUserZodiac extends AppCompatActivity{
 
     private NumberPicker.OnValueChangeListener valueChangeListener;
-    private String selectedName;
+    private int selectedName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class SetUserZodiac extends AppCompatActivity{
         namepicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int oldValue, int newValue) {
-                selectedName = names[namepicker.getValue()];
+               selectedName = namepicker.getValue();
             }
         });
     }
@@ -51,11 +51,10 @@ public class SetUserZodiac extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected (MenuItem menuItem ) {
         if ( menuItem.getItemId() == R.id.set ) {
-            if ( selectedName == null )     selectedName = getResources().getString(R.string.Aries);
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this );
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("Name", selectedName );
+            editor.putInt("Name", selectedName );
             editor.apply();
 
             Intent intent = new Intent( SetUserZodiac.this, Forecast.class );

@@ -42,9 +42,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
 
-        final String name = Names[i];
         viewHolder.textView.setText(Names[i]);
         Glide.with(context)
                 .load(Images[i])
@@ -54,7 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, Forecast.class );
-                intent.putExtra("Title", name );
+                intent.putExtra("Title", i );
                 context.startActivity(intent);
                 ( (Activity) context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }

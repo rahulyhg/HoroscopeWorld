@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this );
                                     SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putString("Name", null );
+                                    editor.putInt("Name", -1 );
                                     editor.apply();
 
                                     Intent intent = new Intent(MainActivity.this, LogIn.class );

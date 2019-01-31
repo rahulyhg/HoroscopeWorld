@@ -33,8 +33,10 @@ public class Forecast extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String title = intent.getStringExtra("Title" );
-        setTitle(title);
+        int id = intent.getIntExtra("Title", 0 );
+
+        String[] Titles = getResources().getStringArray(R.array.Zodiacs);
+        setTitle( Titles[id] );
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -118,6 +120,8 @@ public class Forecast extends AppCompatActivity {
             return myText;
         }
     }
+
+
 }
 
 class MyPagerAdapter extends FragmentStatePagerAdapter {
