@@ -51,7 +51,7 @@ public class SetUserZodiac extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected (MenuItem menuItem ) {
         if ( menuItem.getItemId() == R.id.set ) {
-            if ( selectedName == null )     selectedName = "Aries";
+            if ( selectedName == null )     selectedName = getResources().getString(R.string.Aries);
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this );
             SharedPreferences.Editor editor = preferences.edit();
