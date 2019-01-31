@@ -25,4 +25,5 @@
     <string name="Tomorrow">Завтра</string>
     <string name="Month">Месяц</string>
     <string name="Week">Неделя</string>
+    <string name="Year">Год</string>
 </resources>

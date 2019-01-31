@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">HoroscopeWorld</string>
+    <string name="app_name" translatable="false">Horoscope</string>
     <string name="open" translatable="false">Open</string>
     <string name="close" translatable="false">Close</string>
 
@@ -31,5 +31,30 @@
     <string name="Tomorrow">Tomorrow</string>
     <string name="Month">Month</string>
     <string name="Week">Week</string>
+    <string name="Year">Year</string>
+
+    <string-array name="Zodiacs">
+        <item>@string/Aries</item>
+        <item>@string/Taurus</item>
+        <item>@string/Gemini</item>
+        <item>@string/Cancer</item>
+        <item>@string/Leo</item>
+        <item>@string/Virgo</item>
+        <item>@string/Libra</item>
+        <item>@string/Scorpio</item>
+        <item>@string/Sagittarius</item>
+        <item>@string/Capricorn</item>
+        <item>@string/Aquarius</item>
+        <item>@string/Pisces</item>
+    </string-array>
+
+    <string-array name="date">
+        <item>@string/Yesterday</item>
+        <item>@string/Today</item>
+        <item>@string/Week</item>
+        <item>@string/Month</item>
+        <item>@string/Year</item>
+
+    </string-array>
 
 </resources>

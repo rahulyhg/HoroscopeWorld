@@ -27,7 +27,7 @@ public class SetUserZodiac extends AppCompatActivity{
         setContentView(R.layout.activity_set_user_zodiac);
 
 
-        final String[] names = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
+        final String[] names = getResources().getStringArray(R.array.Zodiacs);
 
         final NumberPicker namepicker = findViewById(R.id.numberPicker );
         namepicker.setMinValue(0);

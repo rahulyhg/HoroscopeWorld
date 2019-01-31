@@ -1,5 +1,6 @@
 package com.example.kar.horoscope.world;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -17,7 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class Forecast extends AppCompatActivity {
+
+    private int day, month, year;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +37,7 @@ public class Forecast extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
+        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), getApplicationContext() );
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(myPagerAdapter);
@@ -40,6 +47,23 @@ public class Forecast extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+        String date = getDate();
+
+    }
+
+    private String getDate() {
+
+        Calendar calendar = Calendar.getInstance();
+        day = calendar.get ( Calendar.DAY_OF_MONTH );
+        month = calendar.get ( Calendar.MONTH );
+        year = calendar.get ( Calendar.YEAR );
+
+        month += 1;
+
+
+        String formattedDate = day + "/" + month + "/" + year;
+        Log.d ( "Date is ---->", formattedDate );
+        return formattedDate;
     }
 
     @Override
@@ -95,12 +119,19 @@ public class Forecast extends AppCompatActivity {
 }
 
 class MyPagerAdapter extends FragmentStatePagerAdapter {
-    private String[] dates = {"Yesterday", "Today", "Tomorrow", "Week", "Month"};
+
+    Context context;
+    private String[] dates;
 
 
-    MyPagerAdapter(FragmentManager fm) {
+    MyPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
+        this.context = context;
+        dates = context.getResources().getStringArray(R.array.date);
     }
+
+
+
 
     @Override
     public Fragment getItem(int position) {
