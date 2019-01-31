@@ -32,7 +32,7 @@ public class Forecast extends AppCompatActivity {
         setContentView(R.layout.activity_forecast);
 
         Intent intent = getIntent();
-        String activity_title = intent.getStringExtra("Title");
+        int activity_title = intent.getIntExtra("Title", 0);
         setTitle(activity_title);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -48,6 +48,7 @@ public class Forecast extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         String date = getDate();
+        ///Use Date in Firebase Search
 
     }
 
