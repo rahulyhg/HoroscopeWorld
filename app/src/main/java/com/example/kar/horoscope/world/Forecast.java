@@ -33,7 +33,11 @@ public class Forecast extends AppCompatActivity {
 
         Intent intent = getIntent();
         int activity_title = intent.getIntExtra("Title", 0);
-        setTitle(activity_title);
+        if ( activity_title != 0 )  setTitle(activity_title);
+        else {
+            String title = intent.getStringExtra("Title" );
+            setTitle(title);
+        }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

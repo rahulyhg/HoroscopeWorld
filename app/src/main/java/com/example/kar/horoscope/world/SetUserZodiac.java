@@ -10,16 +10,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.NumberPicker;
-import android.widget.TextView;
 
 import java.lang.reflect.Field;
 
 public class SetUserZodiac extends AppCompatActivity{
 
-    private TextView textView;
     private NumberPicker.OnValueChangeListener valueChangeListener;
     private String selectedName;
-    private boolean mark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
