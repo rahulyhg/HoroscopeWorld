@@ -19,12 +19,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private Context context;
-    private int[] Names;
+    private String[] Names;
     private int[] Images;
     private LayoutInflater inflater;
 
 
-    RecyclerAdapter(Context context, int[] Names, int[] Images) {
+    RecyclerAdapter(Context context, String[] Names, int[] Images) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
         this.Images = Images;
@@ -44,7 +44,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
-        final int name = Names[i];
+        final String name = Names[i];
         viewHolder.textView.setText(Names[i]);
         Glide.with(context)
                 .load(Images[i])

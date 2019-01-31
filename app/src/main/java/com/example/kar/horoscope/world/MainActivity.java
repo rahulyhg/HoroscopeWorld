@@ -123,9 +123,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        int Names[] = {R.string.Aries, R.string.Taurus, R.string.Gemini, R.string.Cancer, R.string.Leo,
-                R.string.Virgo, R.string.Libra, R.string.Scorpio, R.string.Sagittarius, R.string.Capricorn,
-                R.string.Aquarius, R.string.Pisces };
+        String Names[] = getResources().getStringArray(R.array.Zodiacs);
 
         int Images[] = {
                 R.drawable.logo_aries,
