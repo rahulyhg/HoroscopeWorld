@@ -15,7 +15,6 @@ import java.lang.reflect.Field;
 
 public class SetUserZodiac extends AppCompatActivity{
 
-    private NumberPicker.OnValueChangeListener valueChangeListener;
     private int selectedName;
 
     @Override

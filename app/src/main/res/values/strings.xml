@@ -51,6 +51,7 @@
     <string-array name="date">
         <item>@string/Yesterday</item>
         <item>@string/Today</item>
+        <item>@string/Tomorrow</item>
         <item>@string/Week</item>
         <item>@string/Month</item>
         <item>@string/Year</item>
