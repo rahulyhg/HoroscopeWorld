@@ -1,5 +1,6 @@
 package com.example.kar.horoscope.world;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,7 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.codesgood.views.JustifiedTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +35,8 @@ import java.util.Calendar;
 public class Forecast extends AppCompatActivity {
 
     private int day, month, year, week;
-    static String yesterday, tomorrow, stringWeek, today;
+    static String yesterday, tomorrow, stringWeek, today, stringMonth, stringYear;
+    static String titleZodiac;
     private static DatabaseReference databaseReference;
 
 
@@ -48,6 +51,7 @@ public class Forecast extends AppCompatActivity {
         int id = intent.getIntExtra("Title", 0 );
 
         String[] Titles = getResources().getStringArray(R.array.Zodiacs);
+        titleZodiac = Titles[id];
         setTitle( Titles[id] );
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -67,20 +71,23 @@ public class Forecast extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         String date = getDate();
-        ///Use Date in Firebase Search
-
     }
 
     private String getDate() {
 
         Calendar calendar = Calendar.getInstance();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         day = calendar.get ( Calendar.DAY_OF_MONTH );
         month = calendar.get ( Calendar.MONTH );
         year = calendar.get ( Calendar.YEAR );
         week = calendar.get ( Calendar.WEEK_OF_YEAR);
-        month += 1;
+        stringWeek = week + "";
+
+        month += 1; stringMonth = month + "";
+        stringYear = year + "";
+
+
         String formatDay = day + "";
         String formatMonth = month + "";
 
@@ -94,7 +101,6 @@ public class Forecast extends AppCompatActivity {
         calendar.add ( Calendar.DATE, +2 );
 
         tomorrow = dateFormat.format(calendar.getTime());
-        stringWeek = week + "";
 
 
 
@@ -145,7 +151,9 @@ public class Forecast extends AppCompatActivity {
             Bundle arguments = getArguments();
             assert arguments != null;
             int pageNumber = arguments.getInt(ARG_PAGE);
-            TextView myText = new TextView(getActivity());
+
+            ///Justified TextView is for making all lines equal length
+            JustifiedTextView myText = new JustifiedTextView(getActivity());
             if ( pageNumber == 1 )                 SetYesterday(myText);
             else if ( pageNumber == 2 )            SetToday(myText);
             else if ( pageNumber == 3 )            SetTomorrow(myText);
@@ -153,42 +161,84 @@ public class Forecast extends AppCompatActivity {
             else if ( pageNumber == 5 )            SetMonth( myText );
             else if ( pageNumber == 6 )            SetYear( myText );
 
-            myText.setGravity(Gravity.CENTER);
+            myText.setGravity(Gravity.CENTER_HORIZONTAL);
             myText.setTextColor(Color.WHITE);
             myText.setTextSize( 16 );
-            myText.setPadding(15, 0, 15, 0 );
+            myText.setMovementMethod(new ScrollingMovementMethod());
+            myText.setPadding(30, 0, 15, 0 );
             return myText;
         }
 
     }
 
-    private static void SetYear(TextView myText) {
+    private static void SetYear(TextView myText)        { queryYear( stringYear, myText); }
+    private static void SetMonth(TextView myText)       { queryMonth( stringMonth, myText); }
+    private static void SetWeek(TextView myText)        { queryWeek( stringWeek, myText ); }
+    private static void SetTomorrow(TextView myText)    { queryDay( tomorrow, myText ); }
+    private static void SetToday(TextView myText)       { queryDay( today, myText ); }
+    private static void SetYesterday(TextView myText)   { queryDay ( yesterday, myText ); }
 
+
+    public static void queryYear(final String date, final TextView textView) {
+
+        Query query = databaseReference.child(titleZodiac).orderByChild("year").equalTo(date);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
+                {
+                    YearText text = postSnapshot.getValue(YearText.class);
+                    textView.setText(text.text);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+    public static void queryMonth(final String date, final TextView textView) {
 
-    private static void SetMonth(TextView myText) {
+        Query query = databaseReference.child(titleZodiac).orderByChild("month").equalTo(date);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
+                {
+                    MonthText text = postSnapshot.getValue(MonthText.class);
+                    textView.setText(text.text);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+    public static void queryWeek(final String date, final TextView textView) {
 
-    private static void SetWeek(TextView myText) {
+        Query query = databaseReference.child(titleZodiac).orderByChild("week").equalTo(date);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
+                {
+                    WeekText text = postSnapshot.getValue(WeekText.class);
+                    textView.setText(text.text);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+    public static void queryDay(final String date, final TextView textView) {
 
-    private static void SetTomorrow(TextView myText) {
-        query( tomorrow, myText );
-    }
-
-    private static void SetToday(TextView myText) {
-        query( today, myText );
-    }
-
-    private static void SetYesterday(TextView myText) {
-        query ( yesterday, myText );
-    }
-
-    public static void query(final String date, final TextView textView) {
-
-        Query query = databaseReference.child("Leo").orderByChild("date").equalTo(date);
+        Query query = databaseReference.child(titleZodiac).orderByChild("date").equalTo(date);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -220,8 +270,6 @@ class MyPagerAdapter extends FragmentStatePagerAdapter {
     }
 
 
-
-
     @Override
     public Fragment getItem(int position) {
         return Forecast.MyFragment.newInstance(position);
@@ -237,6 +285,3 @@ class MyPagerAdapter extends FragmentStatePagerAdapter {
         return dates[position];
     }
 }
-
-
-
