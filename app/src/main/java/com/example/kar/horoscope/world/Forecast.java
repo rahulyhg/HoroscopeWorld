@@ -160,7 +160,6 @@ public class Forecast extends AppCompatActivity {
 
             myText.setGravity(Gravity.CENTER_HORIZONTAL);
             myText.setTextColor(Color.WHITE);
-            myText.setTextSize( 16 );
             return view;
         }
     }

@@ -5,5 +5,8 @@
     <dimen name="recycler_image_width">120dp</dimen>
     <dimen name="recycler_text_width">100dp</dimen>
     <dimen name="padding">16dp</dimen>
+    <dimen name="forecast_text_size">16sp</dimen>
+    <dimen name="recycler_text_size">16sp</dimen>
+    <dimen name="picker_text_size">20sp</dimen>
 
 </resources>
