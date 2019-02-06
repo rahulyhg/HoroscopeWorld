@@ -1,18 +1,14 @@
 package com.example.kar.horoscope.world;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -40,7 +36,6 @@ public class Forecast extends AppCompatActivity {
     private static DatabaseReference databaseReference;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,13 +54,12 @@ public class Forecast extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
-
-        MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), getApplicationContext() );
+        MainPagerAdapter myPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), getApplicationContext() );
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(myPagerAdapter);
-        tabLayout.setTabsFromPagerAdapter(myPagerAdapter);
         viewPager.setCurrentItem(1, true);
+        viewPager.setOffscreenPageLimit(4);
 
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -73,9 +67,14 @@ public class Forecast extends AppCompatActivity {
         String date = getDate();
     }
 
+
     private String getDate() {
 
         Calendar calendar = Calendar.getInstance();
+
+        calendar.add(Calendar.WEEK_OF_YEAR, -1);
+        calendar.add(Calendar.WEEK_OF_YEAR, 1);
+        calendar.setFirstDayOfWeek(Calendar.MONDAY);
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         day = calendar.get ( Calendar.DAY_OF_MONTH );
@@ -103,9 +102,7 @@ public class Forecast extends AppCompatActivity {
         tomorrow = dateFormat.format(calendar.getTime());
 
 
-
-        String formattedDate = day + "/" + month + "/" + year;
-        return formattedDate;
+        return day + "/" + month + "/" + year;
     }
 
     @Override
@@ -113,6 +110,7 @@ public class Forecast extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -128,32 +126,31 @@ public class Forecast extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static class MyFragment extends Fragment {
 
+
+    public static class PostsFragment extends Fragment {
         private static final java.lang.String ARG_PAGE = "arg_page";
 
-        public MyFragment() {
 
-        }
-
-        public static MyFragment newInstance ( int pageNumber ) {
-            MyFragment myFragment = new MyFragment();
+        public static Fragment newInstance( int pageNumber ) {
+            PostsFragment postsFragment = new PostsFragment();
             Bundle arguments = new Bundle();
 
             arguments.putInt(ARG_PAGE, pageNumber + 1 );
-            myFragment.setArguments( arguments );
-            return myFragment;
+            postsFragment.setArguments( arguments );
+            return postsFragment;
         }
 
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        @Override
-        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.content, null );
+
             Bundle arguments = getArguments();
             assert arguments != null;
             int pageNumber = arguments.getInt(ARG_PAGE);
 
             ///Justified TextView is for making all lines equal length
-            JustifiedTextView myText = new JustifiedTextView(getActivity());
+            JustifiedTextView myText = view.findViewById(R.id.justText);
             if ( pageNumber == 1 )                 SetYesterday(myText);
             else if ( pageNumber == 2 )            SetToday(myText);
             else if ( pageNumber == 3 )            SetTomorrow(myText);
@@ -164,12 +161,10 @@ public class Forecast extends AppCompatActivity {
             myText.setGravity(Gravity.CENTER_HORIZONTAL);
             myText.setTextColor(Color.WHITE);
             myText.setTextSize( 16 );
-            myText.setMovementMethod(new ScrollingMovementMethod());
-            myText.setPadding(30, 0, 15, 0 );
-            return myText;
+            return view;
         }
-
     }
+
 
     private static void SetYear(TextView myText)        { queryYear( stringYear, myText); }
     private static void SetMonth(TextView myText)       { queryMonth( stringMonth, myText); }
@@ -257,31 +252,3 @@ public class Forecast extends AppCompatActivity {
     }
 }
 
-class MyPagerAdapter extends FragmentStatePagerAdapter {
-
-    Context context;
-    private String[] dates;
-
-
-    MyPagerAdapter(FragmentManager fm, Context context) {
-        super(fm);
-        this.context = context;
-        dates = context.getResources().getStringArray(R.array.date);
-    }
-
-
-    @Override
-    public Fragment getItem(int position) {
-        return Forecast.MyFragment.newInstance(position);
-    }
-
-    @Override
-    public int getCount() {
-        return 6;
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return dates[position];
-    }
-}
