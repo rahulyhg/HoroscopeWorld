@@ -154,9 +154,9 @@ public class Forecast extends AppCompatActivity {
             if ( pageNumber == 1 )                 SetYesterday(myText);
             else if ( pageNumber == 2 )            SetToday(myText);
             else if ( pageNumber == 3 )            SetTomorrow(myText);
-            else if ( pageNumber == 4 )            SetWeek( myText );
-            else if ( pageNumber == 5 )            SetMonth( myText );
-            else if ( pageNumber == 6 )            SetYear( myText );
+            else if ( pageNumber == 4 )            SetMonth( myText );
+           /// else if ( pageNumber == 5 )            SetMonth( myText );
+           /// else if ( pageNumber == 6 )            SetYear( myText );
 
             myText.setGravity(Gravity.CENTER_HORIZONTAL);
             myText.setTextColor(Color.WHITE);
