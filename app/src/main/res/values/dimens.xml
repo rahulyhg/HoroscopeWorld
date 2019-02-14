@@ -9,6 +9,8 @@
     <dimen name="forecast_text_size">16sp</dimen>
     <dimen name="recycler_text_size">16sp</dimen>
     <dimen name="picker_text_size">20sp</dimen>
+    <dimen name="compatibility_text_size">16sp</dimen>
 
-    
+
+
 </resources>

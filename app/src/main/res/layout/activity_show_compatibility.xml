@@ -56,4 +56,23 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <com.codesgood.views.JustifiedTextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/compText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="@dimen/compatibility_text_size"
+            android:padding="16dp"
+            android:lineSpacingMultiplier="1.2"/>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
 </LinearLayout>

@@ -13,8 +13,8 @@
     <RelativeLayout
         android:id="@+id/avatar"
         android:layout_width="wrap_content"
-        android:layout_height="190dp"
-        android:paddingTop="80dp">
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp">
 
         <LinearLayout
             android:id="@+id/layout_male"

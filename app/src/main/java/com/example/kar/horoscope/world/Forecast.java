@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -93,6 +94,9 @@ public class Forecast extends AppCompatActivity {
         if ( day < 10 )     formatDay = "0" + day;
         if ( month < 10 )   formatMonth = "0" + month;
         today =formatDay + "/" + formatMonth + "/" + year;
+
+
+        Log.d("Today---->", today );
 
         calendar.add(Calendar.DATE, -1);
         yesterday = dateFormat.format(calendar.getTime());
