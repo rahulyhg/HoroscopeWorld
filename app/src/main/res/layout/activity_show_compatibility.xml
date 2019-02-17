@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="80dp">
+        android:paddingTop="50dp">
 
         <LinearLayout
             android:id="@+id/male"
@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/male_image"
                 android:layout_width="77dp"
                 android:layout_height="77dp" />
@@ -41,7 +41,7 @@
             android:layout_toRightOf="@+id/male"
             android:paddingLeft="90dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/female_image"
                 android:layout_width="77dp"
                 android:layout_height="77dp" />
@@ -57,12 +57,12 @@
     </RelativeLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
 
         <com.codesgood.views.JustifiedTextView
-            android:layout_marginTop="20dp"
             android:id="@+id/compText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

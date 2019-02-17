@@ -3,8 +3,10 @@ package com.example.kar.horoscope.world;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -18,18 +20,38 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.codesgood.views.JustifiedTextView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class Forecast extends AppCompatActivity {
+
+    private static String[] Zods = { "Aries",
+            "Taurus",
+            "Gemini",
+            "Cancer",
+            "Leo",
+            "Virgo",
+            "Libra",
+            "Scorpio",
+            "Sagittarius",
+            "Capricorn",
+            "Aquarius",
+            "Pisces" };
 
     private int day, month, year, week;
     static String yesterday, tomorrow, stringWeek, today, stringMonth, stringYear;
@@ -54,6 +76,7 @@ public class Forecast extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+        databaseReference.keepSynced(true);
 
         MainPagerAdapter myPagerAdapter = new MainPagerAdapter(getSupportFragmentManager(), getApplicationContext() );
         TabLayout tabLayout = findViewById(R.id.tab_layout);
@@ -198,22 +221,23 @@ public class Forecast extends AppCompatActivity {
     }
     public static void queryMonth(final String date, final TextView textView) {
 
-        Query query = databaseReference.child(titleZodiac).orderByChild("month").equalTo(date);
-        query.addValueEventListener(new ValueEventListener() {
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference collectionReference = db.collection(titleZodiac);
+        com.google.firebase.firestore.Query query = collectionReference.whereEqualTo("month", date );
+
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
-                {
-                    MonthText text = postSnapshot.getValue(MonthText.class);
-                    textView.setText(text.text);
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if ( task.isSuccessful() ) {
+                    for ( QueryDocumentSnapshot snapshot : task.getResult() ) {
+                        MonthText text = snapshot.toObject(MonthText.class);
+                        textView.setText( text.text );
+                    }
                 }
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
         });
+
+
     }
     public static void queryWeek(final String date, final TextView textView) {
 
@@ -236,20 +260,23 @@ public class Forecast extends AppCompatActivity {
     }
     public static void queryDay(final String date, final TextView textView) {
 
-        Query query = databaseReference.child(titleZodiac).orderByChild("date").equalTo(date);
-        query.addValueEventListener(new ValueEventListener() {
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference collectionReference = db.collection(titleZodiac);
+
+        com.google.firebase.firestore.Query query = collectionReference.whereEqualTo("date", date );
+
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
-                {
-                    Text text = postSnapshot.getValue(Text.class);
-                    textView.setText(text.text);
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if ( task.isSuccessful()) {
+
+                    for (QueryDocumentSnapshot snapshot : Objects.requireNonNull(task.getResult())) {
+                        Text text = snapshot.toObject( Text.class );
+                        textView.setText( text.text );
+                    }
+
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
