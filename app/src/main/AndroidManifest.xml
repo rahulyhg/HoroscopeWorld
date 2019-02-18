@@ -25,7 +25,7 @@
         <activity
             android:name=".Forecast"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
@@ -34,18 +34,25 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Compatibility"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ShowCompatibility"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SetUserZodiac"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".SetLanguage"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".About"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

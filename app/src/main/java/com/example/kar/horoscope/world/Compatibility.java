@@ -163,7 +163,7 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        finish();
     }
 }

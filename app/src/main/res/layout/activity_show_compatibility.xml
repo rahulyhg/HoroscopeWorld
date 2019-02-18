@@ -1,78 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_gravity="center_vertical"
-    android:gravity="center_horizontal"
-    tools:context="com.example.kar.horoscope.world.ShowCompatibility">
+    android:fillViewport="true"
+    tools:context="com.example.kar.horoscope.world.ShowCompatibility"
+    android:padding="10dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="50dp">
-
-        <LinearLayout
-            android:id="@+id/male"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/male_image"
-                android:layout_width="77dp"
-                android:layout_height="77dp" />
-
-            <TextView
-                android:id="@+id/male_zodiac"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/male"
-            android:paddingLeft="90dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/female_image"
-                android:layout_width="77dp"
-                android:layout_height="77dp" />
-
-            <TextView
-                android:id="@+id/female_zodiac"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-    </RelativeLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_marginTop="20dp"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        app:cardBackgroundColor="@android:color/transparent">
 
-        <com.codesgood.views.JustifiedTextView
-            android:id="@+id/compText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:textSize="@dimen/compatibility_text_size"
-            android:padding="16dp"
-            android:lineSpacingMultiplier="1.2"/>
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="50dp">
+
+                <LinearLayout
+                    android:id="@+id/male"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/male_image"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp" />
+
+                    <TextView
+                        android:id="@+id/male_zodiac"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/male"
+                    android:paddingLeft="90dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/female_image"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp" />
+
+                    <TextView
+                        android:id="@+id/female_zodiac"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
 
-    </android.support.v4.widget.NestedScrollView>
+                </LinearLayout>
+            </RelativeLayout>
 
 
-</LinearLayout>
+                <com.codesgood.views.JustifiedTextView
+                    android:id="@+id/compText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/compatibility_text_size"
+                    android:padding="16dp"
+                    android:lineSpacingMultiplier="1.2"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</android.support.v4.widget.NestedScrollView>

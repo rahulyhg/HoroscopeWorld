@@ -119,6 +119,12 @@ public class MainActivity extends AppCompatActivity {
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
 
+                if ( id == R.id.about ) {
+                    Intent intent = new Intent( MainActivity.this, About.class );
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }
+
                 return true;
             }
         });
