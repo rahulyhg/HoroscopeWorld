@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent( MainActivity.this, SetUserZodiac.class );
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
                 }
 
                 if ( id == R.id.write ) { SendMail(); }
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, SetLanguage.class );
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
                 }
 
                 if ( id == R.id.about ) {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -110,6 +111,7 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
                 }
             }
         });
@@ -165,5 +167,19 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
         super.onBackPressed();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if ( id == android.R.id.home ) {
+            Intent intent = new Intent( this, MainActivity.class );
+            startActivity ( intent );
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            finish();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

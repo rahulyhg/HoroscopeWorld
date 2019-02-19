@@ -56,6 +56,8 @@ public class SetUserZodiac extends AppCompatActivity{
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected (MenuItem menuItem ) {
         if ( menuItem.getItemId() == R.id.set ) {
@@ -74,6 +76,16 @@ public class SetUserZodiac extends AppCompatActivity{
 
             return true;
         }
+
+        if ( menuItem.getItemId() == android.R.id.home ) {
+            Intent intent = new Intent( this, MainActivity.class );
+            startActivity ( intent );
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            finish();
+
+            return true;
+        }
+
         return super.onOptionsItemSelected(menuItem);
     }
 

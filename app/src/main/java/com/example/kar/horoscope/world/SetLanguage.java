@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,6 +66,30 @@ public class SetLanguage extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent( this, MainActivity.class );
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if ( id == android.R.id.home ) {
+            Intent intent = new Intent( this, MainActivity.class );
+            startActivity ( intent );
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            finish();
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void setLocale(String localeName) {
         if (!localeName.equals(currentLanguage)) {
