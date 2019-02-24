@@ -70,8 +70,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
         android:layout_gravity="center_horizontal"
-        android:overScrollMode="never"/>
+        android:overScrollMode="never"
+        android:layout_marginStart="15dp" />
 
     <Button
         android:id="@+id/goCompatibility"

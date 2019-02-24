@@ -52,7 +52,7 @@ public class LogIn extends AppCompatActivity {
                 finish();
             }
             else {
-                Toast.makeText(this, "Failed to LogIn " + resultCode, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Failed to LogIn\nCheck Your Internet Connection", Toast.LENGTH_LONG).show();
             }
         }
     }

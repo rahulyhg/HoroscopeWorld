@@ -73,7 +73,7 @@ public class Compatibility extends AppCompatActivity implements ClickItem {
 
 
         int col = 2;
-        int space = 180;
+        int space = 100;
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.addItemDecoration(new SpacesItemDecoration(  space ));

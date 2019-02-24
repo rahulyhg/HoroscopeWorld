@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codesgood.views.JustifiedTextView;
@@ -40,19 +41,6 @@ import java.util.Objects;
 
 public class Forecast extends AppCompatActivity {
 
-    private static String[] Zods = { "Aries",
-            "Taurus",
-            "Gemini",
-            "Cancer",
-            "Leo",
-            "Virgo",
-            "Libra",
-            "Scorpio",
-            "Sagittarius",
-            "Capricorn",
-            "Aquarius",
-            "Pisces" };
-
     private int day, month, year, week;
     static String yesterday, tomorrow, stringWeek, today, stringMonth, stringYear;
     static String titleZodiac;
@@ -71,6 +59,20 @@ public class Forecast extends AppCompatActivity {
         String[] Titles = getResources().getStringArray(R.array.Zodiacs);
         titleZodiac = Titles[id];
         setTitle( Titles[id] );
+
+        ImageView img = findViewById(R.id.forecastimage);
+        if (titleZodiac.equals("Aries")) GlideApp.with(getApplicationContext()).load(R.drawable.aries).into(img);
+        if (titleZodiac.equals("Taurus")) GlideApp.with(getApplicationContext()).load(R.drawable.taurus).into(img);
+        if (titleZodiac.equals("Gemini")) GlideApp.with(getApplicationContext()).load(R.drawable.gemini).into(img);
+        if (titleZodiac.equals("Cancer")) GlideApp.with(getApplicationContext()).load(R.drawable.cancer).into(img);
+        if (titleZodiac.equals("Leo")) GlideApp.with(getApplicationContext()).load(R.drawable.leo).into(img);
+        if (titleZodiac.equals("Virgo")) GlideApp.with(getApplicationContext()).load(R.drawable.virgo).into(img);
+        if (titleZodiac.equals("Libra")) GlideApp.with(getApplicationContext()).load(R.drawable.libra).into(img);
+        if (titleZodiac.equals("Scorpio")) GlideApp.with(getApplicationContext()).load(R.drawable.scorpio).into(img);
+        if (titleZodiac.equals("Sagittarius")) GlideApp.with(getApplicationContext()).load(R.drawable.sagittarius).into(img);
+        if (titleZodiac.equals("Capricorn")) GlideApp.with(getApplicationContext()).load(R.drawable.capricorn).into(img);
+        if (titleZodiac.equals("Aquarius")) GlideApp.with(getApplicationContext()).load(R.drawable.aquarius).into(img);
+        if (titleZodiac.equals("Pisces")) GlideApp.with(getApplicationContext()).load(R.drawable.pisces).into(img);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -168,9 +170,14 @@ public class Forecast extends AppCompatActivity {
             return postsFragment;
         }
 
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+            return inflater.inflate(R.layout.content, parent, false);
+        }
 
-            View view = inflater.inflate(R.layout.content, null );
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
 
             Bundle arguments = getArguments();
             assert arguments != null;
@@ -182,12 +189,11 @@ public class Forecast extends AppCompatActivity {
             else if ( pageNumber == 2 )            SetToday(myText);
             else if ( pageNumber == 3 )            SetTomorrow(myText);
             else if ( pageNumber == 4 )            SetMonth( myText );
-           /// else if ( pageNumber == 5 )            SetMonth( myText );
-           /// else if ( pageNumber == 6 )            SetYear( myText );
+            /// else if ( pageNumber == 5 )            SetMonth( myText );
+            /// else if ( pageNumber == 6 )            SetYear( myText );
 
             myText.setGravity(Gravity.CENTER_HORIZONTAL);
             myText.setTextColor(Color.WHITE);
-            return view;
         }
     }
 

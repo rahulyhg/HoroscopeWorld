@@ -114,12 +114,12 @@ public class MainActivity extends AppCompatActivity {
 
                 if ( id == R.id.feedback ) { SendFeedback(); }
 
-                if ( id == R.id.language ) {
+                /*if ( id == R.id.language ) {
                     Intent intent = new Intent(MainActivity.this, SetLanguage.class );
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     finish();
-                }
+                }*/
 
                 if ( id == R.id.about ) {
                     Intent intent = new Intent( MainActivity.this, About.class );
