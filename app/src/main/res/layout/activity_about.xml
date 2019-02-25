@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:text="Daily, Monthly Horoscope.\n All signes of the zodiac.\n Zodiac Compatibility.\n\n"/>
+            android:text="Daily, Monthly Horoscope.\n All signs of the zodiac.\n Zodiac Compatibility.\n\n"/>
 
         <com.codesgood.views.JustifiedTextView
             android:id="@+id/textSecond"

@@ -56,6 +56,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 intent.putExtra("Title", i );
                 context.startActivity(intent);
                 ( (Activity) context).overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                ((Activity)context).finish();
+
             }
         });
     }
