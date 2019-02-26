@@ -8,7 +8,7 @@
     android:layout_gravity="center_vertical"
     android:gravity="center_horizontal"
     android:id="@+id/compatibility"
-    tools:context="com.example.kar.horoscope.world.Compatibility">
+    tools:context="com.kar.horoscope.world.Compatibility">
 
     <RelativeLayout
         android:id="@+id/avatar"

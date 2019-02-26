@@ -5,7 +5,7 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.kar.horoscope.world"
+        applicationId "com.kar.horoscope.world"
         minSdkVersion 16
         targetSdkVersion 28
         multiDexEnabled true

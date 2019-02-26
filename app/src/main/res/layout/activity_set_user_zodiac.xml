@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context="com.example.kar.horoscope.world.SetUserZodiac">
+    tools:context="com.kar.horoscope.world.SetUserZodiac">
 
     <NumberPicker
         android:id="@+id/numberPicker"
