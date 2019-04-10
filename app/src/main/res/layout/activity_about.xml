@@ -50,6 +50,17 @@
             android:text="Compatibility taken from astrology.com.\n Pictures taken from pixabay.com.\n Read and enjoy your life. Hope you will be the luckiest person in the world.\n\n Russian and other languages will appear soon.\n\n"/>
 
         <com.codesgood.views.JustifiedTextView
+            android:id="@+id/privacyUrl"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:autoLink="web"
+            android:text="© 2019 Karen Mirakyan\n"/>
+
+        <com.codesgood.views.JustifiedTextView
             android:id="@+id/textFifth"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
@@ -57,7 +68,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:text="© All Rights Reserved 2019\n\n Karen Mirakyan"/>
+            android:text="All Rights Reserved"/>
 
     </LinearLayout>
 
